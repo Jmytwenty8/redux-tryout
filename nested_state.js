@@ -1,5 +1,7 @@
-const { createStore } = require("redux");
+const { createStore, applyMiddleware } = require("redux");
 const { produce } = require("immer");
+
+const { createLogger } = require("redux-logger");
 const nested_state = {
   name: "Rick and Morty",
   address: {
@@ -38,10 +40,19 @@ const reducer = (state = nested_state, action) => {
   }
 };
 
-const store = createStore(reducer);
+const store = createStore(
+  reducer,
+  applyMiddleware(
+    createLogger({
+      diff: true,
+      collapsed: true,
+      logErrors: true,
+    })
+  )
+);
 
-store.subscribe(() => {
-  console.log("Updated State ", store.getState());
-});
+// store.subscribe(() => {
+//   console.log("Updated State ", store.getState());
+// });
 
 store.dispatch(updateStreet("North Carolina"));
