@@ -6,11 +6,13 @@ const cakeSlice = createSlice({
     numOfCakes: 10,
   },
   reducers: {
-    ordered: (state, action = 1) => {
-      state.numOfCakes -= action.payload;
+    ordered: (state, action) => {
+      const payload = action.payload || 1;
+      state.numOfCakes -= payload;
     },
-    restocked: (state, action = 1) => {
-      state.numOfCakes += action.payload;
+    restocked: (state, action) => {
+      const payload = action.payload || 1;
+      state.numOfCakes += payload;
     },
   },
 });
