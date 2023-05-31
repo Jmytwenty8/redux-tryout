@@ -1,11 +1,11 @@
-import { useSelector, useDispatch } from "react-redux";
+import { useAppSelector, useAppDispatch } from "../../app/hooks";
 import { useState } from "react";
 import { ordered, restocked } from "./iceCreamSlice";
 
 export const IceCreamView = () => {
   const [iceCreamQuantity, setIceCreamQuantity] = useState(0);
-  const dispatch = useDispatch();
-  const numOfIceCreams = useSelector((state) => {
+  const dispatch = useAppDispatch();
+  const numOfIceCreams = useAppSelector((state) => {
     return state.iceCream.numOfIceCreams;
   });
   return (
@@ -16,7 +16,7 @@ export const IceCreamView = () => {
         placeholder='Ice Cream Quantity'
         value={iceCreamQuantity}
         onChange={(e) => {
-          setIceCreamQuantity(e.target.value);
+          setIceCreamQuantity(Number(e.target.value));
         }}
       />
       <button

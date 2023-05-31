@@ -1,11 +1,11 @@
-import { useSelector, useDispatch } from "react-redux";
+import { useAppSelector, useAppDispatch } from "../../app/hooks";
 import { useState } from "react";
 import { ordered, restocked } from "./cakeSlice";
 
 export const CakeView = () => {
   const [cakeQuantity, setCakeQuantity] = useState(0);
-  const dispatch = useDispatch();
-  const numOfCakes = useSelector((state) => {
+  const dispatch = useAppDispatch();
+  const numOfCakes = useAppSelector((state) => {
     return state.cake.numOfCakes;
   });
   return (
@@ -16,7 +16,7 @@ export const CakeView = () => {
         placeholder='Cake Quantity'
         value={cakeQuantity}
         onChange={(e) => {
-          setCakeQuantity(e.target.value);
+          setCakeQuantity(Number(e.target.value));
         }}
       />
       <button
